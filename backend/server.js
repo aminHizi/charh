@@ -13,14 +13,13 @@ app.get("/", (req, res) => {
   res.json({ message: "Backend is running!" });
 });
 app.post("/api/sources", upload.single("file"), (req, res) => {
-  console.log(req.body);
   console.log(req.file);
   res.status(201).json({
     id:"anything",
-    //id: req.file.name,
-    //name: req.file.originalname,
-    //size: req.file.size,
-    //status: "processing",
+    id: req.file.name,
+    name: req.file.originalname,
+    size: req.file.size,
+    status: "processing",
   });
 });
 

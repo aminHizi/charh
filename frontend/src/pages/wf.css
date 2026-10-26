@@ -1,0 +1,45 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+.workflow {
+    display : flex;
+    min-height: 100vh;
+
+}
+.filesBar{
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    background: #ffffff;
+    border: 1px solid #d0d7de;
+    border-radius: 6px;
+    padding: 16px;
+    font-family: -apple-system, "Segoe UI", Helvetica, Arial, sans-serif;
+}
+.content {
+    display: flex;
+    padding: 24px;
+    gap:16px;
+    background-color: #fae2e2;
+    flex: 3;
+}
+.chat {
+    flex: 2;
+    display: flex;
+    flex-direction: column;
+    background: #ffffff;
+    border: 1px solid #d0d7de;
+    border-radius: 6px;
+    overflow: hidden;
+}
+
+.tools {
+    flex: 1;
+    background: #ffffff;
+    border: 1px solid #d0d7de;
+    border-radius: 6px;
+    padding: 16px;
+}

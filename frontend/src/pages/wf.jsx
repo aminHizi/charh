@@ -5,18 +5,23 @@ import AddButton from "../components/addButton.jsx";
 import Chat from "../components/chat.jsx";
 import Tools from "../components/tools.jsx";
 export default function Wf() {
-    const myupload = new XMLHttpRequest();
+    
     const fileInputRef = useRef(null);
     const [files,setFiles] = useState([]);
     const handleFiles = (e) => {
             const chosen = Array.from(e.target.files);   // FileList -> normal array
             for (let i = 0; i < chosen.length; i++) {
-                console.log(chosen[i].name);
-                myupload.upload.onprogress = (e)=>{
+                const xhr = new XMLHttpRequest();
+                const formData = new FormData();
+                console.log("FormData:", formData);
+                formData.append("file", chosen[i]);
+                console.log("formData after append", formData);
+                xhr.upload.onprogress = (e)=>{
                     console.log(e.loaded/e.total*100 + "%");
                 }
-                myupload.open("POST", "http://localhost:3000/api/sources");
-                myupload.send(chosen[i]);
+                xhr.open("POST", "http://localhost:3000/api/sources");
+                console.log(chosen[i]);
+                xhr.send(formData);
             }
             setFiles((prev) => [...prev, ...chosen]);
             e.target.value = "";                         // lets you pick the same file again

@@ -2,10 +2,14 @@ import sys
 import json
 import pymupdf  # pip install pymupdf
 
-
+def clean(text):
+    return " ".join(text.split())  
 def extract(pdf_path):
     doc = pymupdf.open(pdf_path)
-    pages = [page.get_text() for page in doc]
+    pages = []
+    for page in doc:
+        text = page.get_text("text", sort=True)
+        pages.append(clean(text))
     doc.close()
     return pages
 

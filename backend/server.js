@@ -24,6 +24,7 @@ app.post("/api/sources", upload.single("file"), async (req, res) => {
   });
   console.log("req.file.path:", req.file.path);
   await run("python", ["rag/extraction.py", req.file.path, `texts/${req.file.originalname}.json`]);
+  await run("python" , ["rag/chunk.py", `texts/${req.file.originalname}.json`, `texts/${req.file.originalname}_chunks.json`]);
   // change this to use python instead
   /*extractPdf(req.file.path).then(({ totalPages, pages }) => {
     console.log("pages:", totalPages);

@@ -1,2 +1,4 @@
 charhdoc/
 backend/texts/
+backend/uploads/
+backend/.env

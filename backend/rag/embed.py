@@ -39,14 +39,14 @@ def main():
     in_path, out_path = sys.argv[1], sys.argv[2]
 
     with open(in_path, encoding="utf-8") as f:
-        chunks = json.load(f)
+        chunksObject = json.load(f)
 
-    vectors = embed_texts([c["text"] for c in chunks])
+    vectors = embed_texts([c["text"] for c in chunksObject["chunks"]])
 
     out = {
         "model": MODEL,
         "dimensions": len(vectors[0]),
-        "vectors": [{"id": c["id"], "embedding": v} for c, v in zip(chunks, vectors)],
+        "vectors": [{"id": c["id"], "embedding": v} for c, v in zip(chunksObject["chunks"], vectors)],
     }
     with open(out_path, "w", encoding="utf-8") as f:
         json.dump(out, f)
